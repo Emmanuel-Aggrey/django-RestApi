@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from restframework.views import IndexView
+from restframework.views import IndexView,Ipay_fail,Ipay_success
 from rest_framework.documentation import include_docs_urls
 from rest_framework.documentation import include_docs_urls
 
@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('restframework.urls')),
     path('',IndexView.as_view(),name='index'),
-    path('docs/', include_docs_urls(title='FAMILY AND FRIENDS API'))
+    path('iPay-fail/',Ipay_fail.as_view()),
+    path('ipay-success/',Ipay_success.as_view()),
+    path('docs/', include_docs_urls(title='FAMILY AND FRIENDS API')),
 
 ]

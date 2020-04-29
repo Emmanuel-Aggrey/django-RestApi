@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthentic
 from django.views.generic import TemplateView
 # from django.contrib.auth.models import  User
 from .models import Person
+# from decouple import config
 
 # github
 from allauth.socialaccount.providers.github.views import GitHubOAuth2Adapter
@@ -17,6 +18,12 @@ from rest_auth.registration.views import SocialLoginView
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+class Ipay_fail(TemplateView):
+    template_name = 'ipay_fail.html'
+
+class Ipay_success(TemplateView):
+    template_name = 'ipay_succuess.html'
 
 
 class PersonApi(generics.ListAPIView, generics.CreateAPIView,
