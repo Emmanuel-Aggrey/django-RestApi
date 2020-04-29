@@ -1,17 +1,19 @@
-from rest_framework import viewsets
-from .serializers import UsersSerializer
-from rest_framework import generics
-from rest_framework import mixins
-from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from django.views.generic import TemplateView
-# from django.contrib.auth.models import  User
-from .models import Person
-# from decouple import config
+from rest_framework import generics, mixins, viewsets
+from rest_framework.permissions import (IsAdminUser, IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 
 # github
 from allauth.socialaccount.providers.github.views import GitHubOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from rest_auth.registration.views import SocialLoginView
+
+# from django.contrib.auth.models import  User
+from .models import Person
+from .serializers import UsersSerializer
+
+# from decouple import config
+
 
 # index view
 
@@ -22,6 +24,7 @@ class IndexView(TemplateView):
 
 class Ipay_fail(TemplateView):
     template_name = 'ipay_fail.html'
+
 
 class Ipay_success(TemplateView):
     template_name = 'ipay_succuess.html'
@@ -34,14 +37,14 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
     serializer_class = UsersSerializer
     queryset = Person.objects.all()
     lookup_field = 'pk'
-    permission_classes = [IsAuthenticated,]
-   
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, request, pk=None):
-        permission_classes =[IsAdminUser]
+        permission_classes = [IsAdminUser]
         if pk:
             # return the person
             return self.retrieve(request, pk)
-        
+
         else:
             # all persons
             return self.list(request)
@@ -54,8 +57,6 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
 
     def delete(self, request, pk):
         return self.destroy(request, pk)
-    
-
 
     # def relationship(self,relationship=None):
     #     """
@@ -64,7 +65,6 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
     #     """
     #     # name ='sister'
     #     return Person.objects.filter(relationship=relationship)
-
 
 
 # github
