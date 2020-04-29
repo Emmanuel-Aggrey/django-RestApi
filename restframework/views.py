@@ -1,58 +1,50 @@
-from rest_framework import  viewsets
-from .serializers import usersSerializer
-from rest_framework import  generics
+from rest_framework import viewsets
+from .serializers import UsersSerializer
+from rest_framework import generics
 from rest_framework import mixins
-from  rest_framework.permissions import  IsAuthenticated,IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+from django.views.generic import TemplateView
 # from django.contrib.auth.models import  User
-from  .models import Person
+from .models import Person
 
 # github
 from allauth.socialaccount.providers.github.views import GitHubOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from rest_auth.registration.views import SocialLoginView
 
-class UsersViewset(viewsets.ModelViewSet):
-    queryset = Person.objects.all()
-    serializer_class = usersSerializer
-    permission_classes = [IsAuthenticated,]
+# index view
 
 
-class ListUsersApi(generics.GenericAPIView,mixins.ListModelMixin):
-    serializer_class = usersSerializer
-    queryset = Person.objects.all()
-    
-    def get(self,requst):
-        return self.list(requst)
-    
-class NewListUsersApi(generics.ListAPIView):
-    serializer_class = usersSerializer
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+
+class PersonApi(generics.ListAPIView, generics.CreateAPIView,
+                generics.RetrieveAPIView, generics.UpdateAPIView,
+                generics.DestroyAPIView):
+
+    serializer_class = UsersSerializer
     queryset = Person.objects.filter()
+    # lookup_field = 'pk'
     permission_classes = [IsAuthenticated,]
+   
+    def get(self, request, pk=None):
+        permission_classes =[IsAdminUser]
+        if pk:
+            # return the person
+            return self.retrieve(request, pk)
+        else:
+            # all persons
+            return self.list(request)
 
-    def get(self,requst):
-      
-        return self.list(requst)
+    def post(self, request):
+        return self.create(request)
 
-class PostApiview(generics.CreateAPIView):
-    # queryset = User.objects.filter(is_superuser=True)
-    serializer_class =usersSerializer
-    def post(self,requst):
-        print(requst)
-       
-        return self.create(requst)
+    def put(self, request, pk=None):
+        return self.update(request, pk=pk)
 
-class UpdateApiView(generics.UpdateAPIView):
-    serializer_class = usersSerializer
-    def put(self,requst):
-        return self.update(requst)
-
-
-class DelateApiView(generics.DestroyAPIView):
-    serializer_class = usersSerializer
-    def post(self,requst):
-        return self.delete(requst)  
-
-    
+    def delete(self, request, pk):
+        return self.destroy(request, pk)
 
 
 # github

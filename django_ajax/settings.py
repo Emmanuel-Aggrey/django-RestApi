@@ -25,7 +25,7 @@ SECRET_KEY = 'l%k!ethe=@i81oyfix^aw%vcolswk=q8)k%gz0f+1yn3r321^x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aggrey-restapi.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['aggrey-restapi.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -38,13 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-  
-#   allauth for social login
+
+    #   allauth for social login
     'allauth',
     'allauth.account',
     'rest_auth.registration',
 
-  
+
     # 3rd party
     'rest_framework',
     'rest_framework.authtoken',
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # local
     'restframework'
 ]
+
 SITE_ID = 1
 
 
@@ -80,7 +81,7 @@ ROOT_URLCONF = 'django_ajax.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,16 +149,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 
-
-
-STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'django_ajax/static')
 ]
 
 
-CORS_ORIGIN_ALLOW_ALL =True
+CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -166,11 +165,9 @@ REST_FRAMEWORK = {
 }
 
 
-
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
 ACCOUNT_EMAIL_REQUIRED = False
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
