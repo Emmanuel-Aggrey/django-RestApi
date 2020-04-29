@@ -24,8 +24,8 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
                 generics.DestroyAPIView):
 
     serializer_class = UsersSerializer
-    queryset = Person.objects.filter()
-    # lookup_field = 'pk'
+    queryset = Person.objects.all()
+    lookup_field = 'pk'
     permission_classes = [IsAuthenticated,]
    
     def get(self, request, pk=None):
@@ -33,6 +33,7 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
         if pk:
             # return the person
             return self.retrieve(request, pk)
+        
         else:
             # all persons
             return self.list(request)
@@ -45,6 +46,15 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
 
     def delete(self, request, pk):
         return self.destroy(request, pk)
+    
+    # def relationship(self,relationship=None):
+    #     """
+    #     This view should return a list of all the purchases
+    #     for the currently authenticated user.
+    #     """
+    #     # name ='sister'
+    #     return Person.objects.filter(relationship=relationship)
+
 
 
 # github
