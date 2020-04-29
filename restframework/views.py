@@ -47,6 +47,8 @@ class PersonApi(generics.ListAPIView, generics.CreateAPIView,
     def delete(self, request, pk):
         return self.destroy(request, pk)
     
+
+
     # def relationship(self,relationship=None):
     #     """
     #     This view should return a list of all the purchases

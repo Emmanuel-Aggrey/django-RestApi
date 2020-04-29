@@ -21,9 +21,6 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
 
     # github
-    path('rest-auth/github/', views.GithubLogin.as_view(), name='github_login')
-
-
-
+    path('rest-auth/github/', views.GithubLogin.as_view(), name='github_login'),
 
 ]
