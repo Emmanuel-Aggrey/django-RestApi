@@ -19,6 +19,7 @@ from rest_auth.registration.views import SocialLoginView
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+
 class Ipay_fail(TemplateView):
     template_name = 'ipay_fail.html'
 

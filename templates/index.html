@@ -10,13 +10,48 @@
 </head>
 
 <body>
-  <h4 class="text-right">all endpoints have been tested with <b>python request,Postman and curl </b></h4>
+  <h6 class="text-right">all endpoints have been tested with <b>python request,Postman and curl </b></h6>
 
 <div class="jumbotron">
-  <h1 class="display-3">API TO DEMONSTRATE HOW DJANGO REST API WORKS</h1>
+  <h5 class="">API TO DEMONSTRATE HOW DJANGO REST API WORKS</h5>
   <!-- <p class="lead">hope you find it simple</p> -->
   <hr class="my-2">
   <p>View The Documentation To Get Started</p>
+
+  <div>simple example</div>
+  <h6>get all data using requests</h6>
+  <div style="background-color: cornsilk;">
+	<h6 >
+		import requests <br>
+	
+		url = "http://127.0.0.1:8000/api/persons/" <br>
+		
+		payload = {} <br>
+		headers = {
+		  'Authorization': 'Token cd3f275374f2441ca7208fafb9056b34a703f9e6', <br>
+		  'Authorization': 'Basic ZW1tYW46YWdncmV5MTIz' <br>
+		}
+		<br>
+		response = requests.request("GET", url, headers=headers, data = payload) <br>
+		
+		print(response.text.encode('utf8'))
+		
+	</h6>
+	
+</div>
+	<br> <hr>
+	<h6>get all data using curl</h6>
+<h6 style="background-color: cornsilk;">
+
+	curl --location --request GET 'http://127.0.0.1:8000/api/persons/' \ <br>
+--header 'Authorization: Token cd3f275374f2441ca7208fafb9056b34a703f9e6' \ <br>
+--header 'Authorization: Basic ZW1tYW46YWdncmV5MTIz'
+
+</h6>
+
+
+ 
+
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="./docs" role="button">View here</a>
   </p>
@@ -27,14 +62,14 @@
 
 <hr>
 
-<h2>Donate some cedis if this api helped you</h2>
+<h2>Donate some cedis if this api helped you understand DRF</h2>
 <hr>
 
 <div>
 	<html class="fonts">
 		<head>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-			<style type="text/css">.fonts{font-size: 12.5px;}.ipay-btn{background-color: #04448C;border-color: #04448C;border-radius: 17px !important;}.modal{width: 27% !important;}.modal-header{padding-left:48px !important;padding-right: 48px !important;border-bottom: none !important;text-align: center !important;}.modal-footer{height: 120px;padding-left:48px !important;padding-right: 48px !important;margin-bottom: -17px !important;border-top: none !important;}.modal-body{margin-bottom: -25px;padding-right: 48px !important;padding-left: 48px !important;border-bottom: none !important;margin-top: -27px;}#close:hover{text-decoration: none !important;}.logo{width: 65px;height: 65px;}</style>
+			<style type="text/css">.fonts{font-size: 12.5px;}.ipay-btn{background-color: #04448C;border-color: #04448C;border-radius: 17px !important;}.modal{width: 80% !important;}.modal-header{padding-left:48px !important;padding-right: 48px !important;border-bottom: none !important;text-align: center !important;}.modal-footer{height: 120px;padding-left:48px !important;padding-right: 48px !important;margin-bottom: -17px !important;border-top: none !important;}.modal-body{margin-bottom: -25px;padding-right: 48px !important;padding-left: 48px !important;border-bottom: none !important;margin-top: -27px;}#close:hover{text-decoration: none !important;}.logo{width: 65px;height: 65px;}</style>
 		</head>
 		<body>
 			<div class="container">
