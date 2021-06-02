@@ -1,5 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin,ImportExportMixin
+from .models import Item
 # Register your models here.
 
 
